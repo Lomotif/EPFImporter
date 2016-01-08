@@ -465,8 +465,13 @@ def main():
 
     LOGGER.info("Total import time for all directories: %s", ts[:len(ts)-4])
 
+    return not bool(failedFilesDict)
+
 #Execute
 if __name__ == "__main__":
-    main()
-
+    success = main()
+    if success:
+        exit(0)
+    else:
+        exit(1)
 
