@@ -1,4 +1,3 @@
-#!/usr/bin/python
 
 # Copyright (c) 2010 Apple  Inc. All rights reserved.
 
@@ -41,7 +40,7 @@ from __future__ import with_statement
 import logging
 import logging.handlers
 import EPFIngester
-import MySQLdb
+import pymysql as MySQLdb
 import psycopg2
 import os
 import sys
@@ -231,7 +230,8 @@ def doImport(directoryPath,
             filesLeft.remove(fName)
             filesImported.append(fName)
             _dumpDict(SNAPSHOT_DICT, SNAPSHOT_PATH)
-        except (MySQLdb.Error, psycopg2.Error), e:
+        except (MySQLdb.Error, psycopg2.Error) as e:
+            LOGGER.error(e)
             failedFiles.append(fName)
             _dumpDict(SNAPSHOT_DICT, SNAPSHOT_PATH)
             continue
