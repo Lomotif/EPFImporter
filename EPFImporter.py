@@ -368,7 +368,7 @@ def main():
 
     if not args and not options.isResume: #no directory args were given, and we're not in resume mode
         op.print_usage()
-        sys.exit()
+        sys.exit(1)
 
     #roll over the log file, so each import has its own log
     for aHandler in LOGGER.handlers:
